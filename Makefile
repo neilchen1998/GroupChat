@@ -44,7 +44,7 @@ $(BUILD_DIR)/objs/%.o: $(SRCS_DIR)/%.cc $(BUILD_DIR)
 $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)/objs
 
-run:
+run: $(TARGET)
 	@./$(TARGET)
 
 clean:
