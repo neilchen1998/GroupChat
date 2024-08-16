@@ -2,6 +2,7 @@
 
 #include "BaseHandler.hpp"
 #include "ChatGroup.hpp"
+#include "Command.hpp"
 
 #include <string>
 #include <string_view>
@@ -9,5 +10,5 @@
 class PostMsgHandler : public BaseHandler
 {
 public:
-    std::string Handle(ChatGroup* group, std::string_view msg) override;
+    std::string Handle(Command* command) override;
 };

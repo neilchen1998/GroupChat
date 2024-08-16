@@ -1,13 +1,14 @@
 #include "BaseHandler.hpp"
 #include "PostMsgHandler.hpp"
+#include "Command.hpp"
 
 #include <string>
 #include <string_view>
 
-std::string PostMsgHandler::Handle(ChatGroup *group, std::string_view msg)
+std::string PostMsgHandler::Handle(Command* command)
 {
     // publishes the message
-    group->Publish(msg);
+    command->Execute();
 
     return "Message is sent!";
 }

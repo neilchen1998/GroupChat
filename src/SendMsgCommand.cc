@@ -1,9 +1,10 @@
 #include "SendMsgCommand.hpp"
-#include "ChatGroup.hpp"
+#include "Publisher.hpp"
 
 #include <string>
+#include <string_view>
 
-SendMsgCommand::SendMsgCommand(ChatGroup* chatGroup, std::string msg) : chatGroup(chatGroup), msg(msg)
+SendMsgCommand::SendMsgCommand(Publisher* chatGroup, std::string_view msg) : chatGroup(chatGroup), msg(msg)
 {
 
 }

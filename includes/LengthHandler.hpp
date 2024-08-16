@@ -10,7 +10,7 @@ class LengthHandler : public BaseHandler
 {
 public:
     LengthHandler(unsigned int maxLength = 50);
-    std::string Handle(ChatGroup* group, std::string_view msg) override;
+    std::string Handle(Command* command) override;
 
 private:
     unsigned int maxLength;

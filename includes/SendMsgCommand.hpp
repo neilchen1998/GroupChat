@@ -1,17 +1,18 @@
 #pragma once
 
 #include "Command.hpp"
-#include "ChatGroup.hpp"
+#include "Publisher.hpp"
 
 #include <string>
+#include <string_view>
 
 class SendMsgCommand : public Command
 {
 public:
-    SendMsgCommand(ChatGroup* chatGroup, std::string msg);
+    SendMsgCommand(Publisher* chatGroup, std::string_view msg);
     void Execute();
     std::string Get() override;
 private:
-    ChatGroup* chatGroup;
+    Publisher* chatGroup;
     std::string msg;
 };

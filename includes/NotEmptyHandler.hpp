@@ -9,5 +9,5 @@
 class NotEmptyHandler : public BaseHandler
 {
 public:
-    std::string Handle(ChatGroup* group, std::string_view msg) override;
+    std::string Handle(Command* command) override;
 };

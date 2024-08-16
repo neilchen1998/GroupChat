@@ -1,4 +1,5 @@
 #include "BaseHandler.hpp"
+#include "Command.hpp"
 
 #include <string>
 #include <string_view>
@@ -13,12 +14,12 @@ Handler *BaseHandler::SetNext(Handler *nextHandler)
     return nextHandler;
 }
 
-std::string BaseHandler::Handle(ChatGroup *group, std::string_view msg)
+std::string BaseHandler::Handle(Command* command)
 {
     // checks if there is another handler down the chain
     if (this->next)
     {
-        return next->Handle(group, msg);
+        return next->Handle(command);
     }
 
     // reaches to the end of the chain

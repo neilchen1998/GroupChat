@@ -6,6 +6,7 @@
 #include "NotEmptyHandler.hpp"
 #include "LengthHandler.hpp"
 #include "PostMsgHandler.hpp"
+#include "SendMsgCommand.hpp"
 
 #include <iostream>
 #include <memory>   // std::unique_ptr, std::make_unique
@@ -41,25 +42,29 @@ int main()
     {
         // tries to send an empty message
         std::string_view msg("");
-        std::cerr << sendMsgHandlers->Handle(dynamic_cast<ChatGroup*>(group1.get()), msg) << std::endl;
+        std::unique_ptr<Command> emptyCommand = std::make_unique<SendMsgCommand>(group1.get(), msg);
+        std::cerr << sendMsgHandlers->Handle(emptyCommand.get()) << std::endl;
     }
 
     {
         // tries to send a long message
         std::string_view msg("fadgagfagghafgafgatbajjhrthereriricauythuht");
-        std::cerr << sendMsgHandlers->Handle(dynamic_cast<ChatGroup*>(group1.get()), msg) << std::endl;
+        std::unique_ptr<Command> tooLongCommand = std::make_unique<SendMsgCommand>(group1.get(), msg);
+        std::cerr << sendMsgHandlers->Handle(tooLongCommand.get()) << std::endl;
     }
 
     {
         // tries to send a valid message on group 1
         std::string_view msg("New user story is created!");
-        std::cerr << sendMsgHandlers->Handle(dynamic_cast<ChatGroup*>(group1.get()), msg) << std::endl;
+        std::unique_ptr<Command> commandNick = std::make_unique<SendMsgCommand>(group1.get(), msg);
+        std::cerr << sendMsgHandlers->Handle(commandNick.get()) << std::endl;
     }
 
     {
         // tries to send a valid message on group 2
         std::string_view msg("Test report is ready!");
-        std::cerr << sendMsgHandlers->Handle(dynamic_cast<ChatGroup*>(group2.get()), msg) << std::endl;
+        std::unique_ptr<Command> commandGranite = std::make_unique<SendMsgCommand>(group2.get(), msg);
+        std::cerr << sendMsgHandlers->Handle(commandGranite.get()) << std::endl;
     }
 
     return 0;
