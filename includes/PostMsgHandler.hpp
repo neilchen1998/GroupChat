@@ -1,7 +1,6 @@
 #pragma once
 
 #include "BaseHandler.hpp"
-#include "ChatGroup.hpp"
 #include "Command.hpp"
 
 #include <string>

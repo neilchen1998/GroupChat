@@ -1,6 +1,5 @@
 #pragma once
 
-#include "ChatGroup.hpp"
 #include "Command.hpp"
 
 #include <string>
