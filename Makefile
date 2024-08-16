@@ -13,6 +13,9 @@ SRCS_DIR := src
 # build directory
 BUILD_DIR = build
 
+# app directory
+APP_DIR := app
+
 # target binary
 TARGET = $(BUILD_DIR)/group_chat
 
@@ -34,8 +37,12 @@ all : $(TARGET) $(BUILD_DIR)
 
 # links object files to create the binary
 # NOTE: the build directory needs to be created
-$(TARGET) : $(OBJS) $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -o $(TARGET) $(OBJS)
+$(TARGET) : $(BUILD_DIR)/objs/main.o $(OBJS) $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -o $(TARGET) $(OBJS) $(BUILD_DIR)/objs/main.o
+
+# compiles the app
+$(BUILD_DIR)/objs/main.o: $(APP_DIR)/main.cc $(BUILD_DIR)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 # compiles source files to object files
 $(BUILD_DIR)/objs/%.o: $(SRCS_DIR)/%.cc $(BUILD_DIR)
